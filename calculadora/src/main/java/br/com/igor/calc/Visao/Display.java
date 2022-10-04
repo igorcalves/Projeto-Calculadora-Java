@@ -6,13 +6,18 @@ import javax.swing.BorderFactory;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class Display extends JPanel {
+import br.com.igor.calc.Modelo.Memoria;
+import br.com.igor.calc.Modelo.MemoriaObservador;
+
+public class Display extends JPanel implements MemoriaObservador {
 
     private final JLabel label;
 
     public Display() {
+        Memoria.getIntancia().adicionarObservador(this);
+
         setBackground(new Color(46, 49, 50));
-        label = new JLabel("1234,56");
+        label = new JLabel(Memoria.getIntancia().getTextoAtual());
         label.setForeground(Color.WHITE);
         label.setFont(new Font("courier", Font.PLAIN, 30));
         setBorder(BorderFactory.createLineBorder(Color.BLACK));
@@ -22,4 +27,12 @@ public class Display extends JPanel {
         add(label);
 
     }
+
+    @Override
+    public void ValorAlterado(String novoValor) {
+        label.setText(novoValor);
+        
+    }
+
+    
 }

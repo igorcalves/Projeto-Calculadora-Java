@@ -9,7 +9,7 @@ public class Calculadora extends JFrame {
 
         organizarLayout();
 
-        setSize(232, 322);
+        setSize(229, 339);
         // setUndecorated(true); // tirar a barra de cima de maximizar minimizar ou
         // fechar
         setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -23,7 +23,7 @@ public class Calculadora extends JFrame {
         display.setPreferredSize(new Dimension(225, 60));
         add(display, BorderLayout.NORTH);
         Teclado teclado = new Teclado();
-        add(teclado, BorderLayout.CENTER);
+        add(teclado);
     }
 
     public static void main(String[] args) {

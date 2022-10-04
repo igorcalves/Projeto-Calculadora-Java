@@ -2,10 +2,15 @@ package br.com.igor.calc.Visao;
 
 import java.awt.*;
 
-import javax.swing.BorderFactory;
+import java.awt.event.*;
+
+
+import javax.swing.JButton;
 import javax.swing.JPanel;
 
-public class Teclado extends JPanel {
+import br.com.igor.calc.Modelo.Memoria;
+
+public class Teclado extends JPanel implements ActionListener {
 
     private final Color COR_CINZA_ESCURO = new Color(68, 68, 68);
     private final Color COR_CINZA_CLARO = new Color(99, 99, 99);
@@ -54,12 +59,30 @@ public class Teclado extends JPanel {
 
     }
 
-    private void adicionarBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {
-        setBorder(BorderFactory.createLineBorder(Color.BLACK));
+    private void adicionarBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {    
         c.gridx = x;
         c.gridy = y;
         Botao botao = new Botao(texto, cor);
+        botao.addActionListener(this);
         add(botao, c);
     }
+
+
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    
+         if(e.getSource() instanceof JButton){
+             JButton botao = (JButton)e.getSource();
+             Memoria.getIntancia().processarComando(botao.getText());
+             System.out.println(botao.getText());
+             
+            }
+            
+        }
+        
+
+    
 
 }
