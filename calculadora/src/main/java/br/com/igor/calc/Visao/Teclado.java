@@ -4,7 +4,6 @@ import java.awt.*;
 
 import java.awt.event.*;
 
-
 import javax.swing.JButton;
 import javax.swing.JPanel;
 
@@ -27,9 +26,10 @@ public class Teclado extends JPanel implements ActionListener {
 
         c.fill = GridBagConstraints.BOTH;
         // Linha 1
-        c.gridwidth = 3;
+        c.gridwidth = 2;
         adicionarBotao("AC", COR_CINZA_ESCURO, c, 0, 0);
         c.gridwidth = 1;
+        adicionarBotao("±", COR_CINZA_ESCURO, c, 2, 0);
         adicionarBotao("/", COR_LARANJA, c, 3, 0);
 
         // Linha 2
@@ -59,7 +59,7 @@ public class Teclado extends JPanel implements ActionListener {
 
     }
 
-    private void adicionarBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {    
+    private void adicionarBotao(String texto, Color cor, GridBagConstraints c, int x, int y) {
         c.gridx = x;
         c.gridy = y;
         Botao botao = new Botao(texto, cor);
@@ -67,22 +67,14 @@ public class Teclado extends JPanel implements ActionListener {
         add(botao, c);
     }
 
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
 
-    
-         if(e.getSource() instanceof JButton){
-             JButton botao = (JButton)e.getSource();
-             Memoria.getIntancia().processarComando(botao.getText());
-             System.out.println(botao.getText());
-             
-            }
-            
+        if (e.getSource() instanceof JButton) {
+            JButton botao = (JButton) e.getSource();
+            Memoria.getIntancia().processarComando(botao.getText());
         }
-        
 
-    
+    }
 
 }
